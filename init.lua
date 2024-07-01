@@ -112,8 +112,8 @@ vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
--- vim.opt.clipboard = 'unnamedplus'
+--  See `:help "clipboard"`
+-- vim.opt.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -140,8 +140,8 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
+--  See `:help "list"`
+--  and `:help "listchars"`
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
@@ -176,19 +176,19 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- vim.keymap.set("n", "<left>", "<cmd>echo \"Use h to move!!\"<CR>")
+-- vim.keymap.set("n", "<right>", "<cmd>echo \"Use l to move!!\"<CR>")
+-- vim.keymap.set("n", "<up>", "<cmd>echo \"Use k to move!!\"<CR>")
+-- vim.keymap.set("n", "<down>", "<cmd>echo \"Use j to move!!\"<CR>")
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
--- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
--- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
--- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
--- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+-- vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+-- vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+-- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Keybinds to make navigation faster.
 -- Use CTRL+<hjkl> for 4x navigations
@@ -235,7 +235,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+  -- NOTE: Plugins can be added with a link (or for a github repo: "owner/repo" link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- NOTE: Plugins can also be added by using a table,
@@ -245,14 +245,14 @@ require('lazy').setup({
   -- Use `opts = {}` to force a plugin to be loaded.
   --
   --  This is equivalent to:
-  --    require('Comment').setup({})
+  --    require("Comment").setup({})
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-  --    require('gitsigns').setup({ ... })
+  --    require("gitsigns").setup({ ... })
   --
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -274,7 +274,7 @@ require('lazy').setup({
   -- lazy loading plugins that don't need to be loaded immediately at startup.
   --
   -- For example, in the following configuration, we use:
-  --  event = 'VimEnter'
+  --  event = "VimEnter"
   --
   -- which loads which-key before all the UI elements are loaded. Events can be
   -- normal autocommands events (`:help autocmd-events`).
@@ -285,7 +285,7 @@ require('lazy').setup({
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    event = 'VimEnter', -- Sets the loading event to "VimEnter"
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
 
@@ -365,7 +365,7 @@ require('lazy').setup({
         --
         -- defaults = {
         --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+        --     i = { ["<c-enter>"] = "to_fuzzy_refine" },
         --   },
         -- },
         -- pickers = {}
@@ -427,7 +427,7 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      -- NOTE: `opts = {}` is the same as calling `require("fidget").setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -598,7 +598,7 @@ require('lazy').setup({
                 callSnippet = 'Replace',
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              -- diagnostics = { disable = { "missing-fields" } },
             },
           },
         },
@@ -693,9 +693,9 @@ require('lazy').setup({
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
           -- {
-          --   'rafamadriz/friendly-snippets',
+          --   "rafamadriz/friendly-snippets",
           --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
+          --     require("luasnip.loaders.from_vscode").lazy_load()
           --   end,
           -- },
         },
@@ -743,9 +743,9 @@ require('lazy').setup({
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
-          --['<CR>'] = cmp.mapping.confirm { select = true },
-          --['<Tab>'] = cmp.mapping.select_next_item(),
-          --['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          --["<CR>"] = cmp.mapping.confirm { select = true },
+          --["<Tab>"] = cmp.mapping.select_next_item(),
+          --["<S-Tab>"] = cmp.mapping.select_prev_item(),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -793,7 +793,7 @@ require('lazy').setup({
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      -- any other, such as "tokyonight-storm", "tokyonight-moon", or "tokyonight-day".
       vim.cmd.colorscheme 'tokyonight-night'
 
       -- You can configure highlights by doing something like:
@@ -883,19 +883,19 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  -- require "kickstart.plugins.debug",
+  -- require "kickstart.plugins.indent_line",
+  -- require "kickstart.plugins.lint",
+  -- require "kickstart.plugins.autopairs",
+  -- require "kickstart.plugins.neo-tree",
+  -- require "kickstart.plugins.gitsigns", -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+  -- { import = "custom.plugins" },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
