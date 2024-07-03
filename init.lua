@@ -428,7 +428,22 @@ require("lazy").setup({
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require("fidget").setup({})`
-      { "j-hui/fidget.nvim", opts = {} },
+      {
+        "j-hui/fidget.nvim",
+        opts = {
+          progress = {
+            display = {
+              done_icon = vim.g.have_nerd_font and "\u{e63f}" or "✔ ",
+            },
+          },
+          notification = {
+            window = {
+              winblend = 0,
+              border = "rounded",
+            },
+          },
+        },
+      },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
@@ -610,7 +625,11 @@ require("lazy").setup({
       --    :Mason
       --
       --  You can press `g?` for help in this menu.
-      require("mason").setup()
+      require("mason").setup {
+        ui = {
+          border = "rounded",
+        },
+      }
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -788,17 +807,22 @@ require("lazy").setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as "tokyonight-storm", "tokyonight-moon", or "tokyonight-day".
-      vim.cmd.colorscheme "tokyonight-night"
+      vim.cmd.colorscheme "catppuccin-mocha"
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi "Comment gui=none"
     end,
+    opts = {
+      transparent_background = true,
+    },
   },
 
   -- Highlight todo, notes, etc in comments
@@ -915,6 +939,7 @@ require("lazy").setup({
       task = "📌",
       lazy = "💤 ",
     },
+    border = "rounded",
   },
 })
 
