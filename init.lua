@@ -625,6 +625,11 @@ require("lazy").setup({
       require("mason").setup {
         ui = {
           border = "rounded",
+          icons = {
+            package_installed = "\u{25cf}",
+            package_pending = "\u{25cf}",
+            package_uninstalled = "\u{25cb}",
+          },
         },
       }
 
