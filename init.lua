@@ -56,9 +56,6 @@ vim.opt.inccommand = "split"
 -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = 8
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -93,6 +90,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
   end,
+})
+
+-- Fix Neovim changing terminal cursor on exit
+vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
+  command = "set guicursor=a:ver1",
 })
 
 -- Install `lazy.nvim` plugin manager
@@ -570,16 +572,34 @@ require("lazy").setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require("mini.surround").setup()
 
-      -- Simple and easy statusline
-      local statusline = require "mini.statusline"
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- Text operators (evaluate, exchange, sort, etc.)
+      require("mini.operators").setup()
 
-      -- set the section for cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return "%2l:%-2v"
-      end
+      -- Automatic paired characters
+      require("mini.pairs").setup()
+    end,
+  },
+
+  -- Custom statusline
+  {
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require("lualine").setup {}
+    end,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+
+  -- Bufferline
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("bufferline").setup()
+
+      vim.keymap.set("n", "<leader>h", "<cmd>bp<CR>")
+      vim.keymap.set("n", "<leader>l", "<cmd>bn<CR>")
     end,
   },
 
@@ -611,20 +631,24 @@ require("lazy").setup({
       ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup(opts)
 
-      -- There are additional nvim-treesitter modules that you can use to interact
-      -- with nvim-treesitter. You should go explore a few and see what interests you:
-      --
-      --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
-  -- require "kickstart.plugins.debug",
-  -- require "kickstart.plugins.indent_line",
-  -- require "kickstart.plugins.lint",
-  -- require "kickstart.plugins.autopairs",
-  -- require "kickstart.plugins.neo-tree",
-  -- require "kickstart.plugins.gitsigns", -- adds gitsigns recommend keymaps
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    config = function()
+      require("treesitter-context").setup {
+        separator = "-",
+      }
+      vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { link = "BufferLineNumbers" })
+      vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = false })
+      vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { underline = false })
+
+      vim.keymap.set("n", "[c", function()
+        require("treesitter-context").go_to_context(vim.v.count1)
+      end, { silent = true })
+    end,
+  },
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
@@ -644,9 +668,4 @@ require("lazy").setup({
     },
     border = "rounded",
   },
-})
-
--- Fix Neovim changing terminal cursor on exit
-vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
-  command = "set guicursor=a:ver1",
 })
