@@ -665,6 +665,33 @@ require("lazy").setup({
       vim.keymap.set("n", "<c-w><enter>", "<cmd>Detour<cr>")
     end,
   },
+
+  -- Animate and expand the current window
+  {
+    "anuvyklack/windows.nvim",
+    config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      vim.o.equalalways = false
+      require("windows").setup {
+        animation = {
+          fps = 120,
+          duration = 250,
+          easing = "out_sine",
+        },
+      }
+
+      vim.keymap.set("n", "<c-w>a", "<cmd>WindowsToggleAutowidth<cr>", { desc = "Toggle Autowidth" })
+      vim.keymap.set("n", "<c-w>z", "<cmd>WindowsMaximize<cr>", { desc = "Maximi[Z]e window" })
+      vim.keymap.set("n", "<c-w>_", "<cmd>WindowsMaximizeVertically<cr>", { desc = "Maximize windows height" })
+      vim.keymap.set("n", "<c-w>|", "<cmd>WindowsMaximizeHorizontally<cr>", { desc = "Maximize window width" })
+      vim.keymap.set("n", "<c-w>=", "<cmd>WindowsEqualize<cr>", { desc = "Equalize windows" })
+    end,
+    dependencies = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim",
+    },
+  },
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
