@@ -634,6 +634,8 @@ require("lazy").setup({
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
+
+  -- Add context to the top
   {
     "nvim-treesitter/nvim-treesitter-context",
     config = function()
@@ -648,6 +650,18 @@ require("lazy").setup({
         require("treesitter-context").go_to_context(vim.v.count1)
       end, { silent = true })
     end,
+  },
+
+  -- Add indentation alignment lines
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+      scope = {
+        show_start = false,
+        show_end = false
+      }
+    },
   },
 }, {
   ui = {
