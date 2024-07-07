@@ -29,6 +29,12 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Change default indent to 4 spaces
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
 
@@ -167,10 +173,15 @@ require("lazy").setup({
           return vim.fn.executable "make" == 1
         end,
       },
-      { "nvim-telescope/telescope-ui-select.nvim" },
+      {
+        "nvim-telescope/telescope-ui-select.nvim",
+      },
 
       -- Useful for getting pretty icons, but requires a Nerd Font
-      { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+      {
+        "nvim-tree/nvim-web-devicons",
+        enabled = vim.g.have_nerd_font,
+      },
     },
     config = function()
       require("telescope").setup {
@@ -347,26 +358,7 @@ require("lazy").setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-        -- tsserver = {},
-        --
-
-        lua_ls = {
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = "Replace",
-              },
-              -- diagnostics = { disable = { "missing-fields" } },
-            },
-          },
-        },
+        lua_ls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -433,7 +425,14 @@ require("lazy").setup({
         }
       end,
       formatters_by_ft = {
+        css = { { "prettierd", "prettier" } },
+        html = { { "prettierd", "prettier" } },
+        javascript = { { "prettierd", "prettier" } },
+        javascriptreact = { { "prettierd", "prettier" } },
+        json = { { "prettierd", "prettier" } },
         lua = { "stylua" },
+        typescript = { { "prettierd", "prettier" } },
+        typescriptreact = { { "prettierd", "prettier" } },
       },
     },
   },
