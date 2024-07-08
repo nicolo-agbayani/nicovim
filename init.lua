@@ -248,24 +248,6 @@ require("lazy").setup({
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
 
-      -- Useful status updates for LSP.
-      {
-        "j-hui/fidget.nvim",
-        opts = {
-          progress = {
-            display = {
-              done_icon = vim.g.have_nerd_font and "\u{e63f}" or "✔ ",
-            },
-          },
-          notification = {
-            window = {
-              winblend = 0,
-              border = "rounded",
-            },
-          },
-        },
-      },
-
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
       { "folke/neodev.nvim", opts = {} },
@@ -697,6 +679,73 @@ require("lazy").setup({
     dependencies = {
       "anuvyklack/middleclass",
       "anuvyklack/animation.nvim",
+    },
+  },
+
+  -- Custom command line
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("noice").setup {
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+        },
+        presets = {
+          bottom_search = false,
+          command_palette = true,
+          long_message_to_split = true,
+          inc_rename = false,
+          lsp_doc_border = false,
+        },
+        views = {
+          cmdline_popup = {
+            position = {
+              row = 8,
+              col = "50%",
+            },
+            size = {
+              width = 60,
+              height = "auto",
+            },
+          },
+          cmdline_popupmenu = {
+            relative = "editor",
+            position = {
+              row = 11,
+              col = "50%",
+            },
+            size = {
+              width = 60,
+              height = 10,
+            },
+            border = {
+              style = "rounded",
+              padding = { 0, 1 },
+            },
+          },
+          mini = {
+            border = {
+              style = "rounded",
+            },
+            win_options = {
+              winblend = 0,
+            },
+            position = {
+              row = -2,
+              col = "100%",
+            },
+          },
+        },
+      }
+    end,
+    dependencies = {
+      "muniftanjim/nui.nvim",
+      { "rcarriga/nvim-notify" },
     },
   },
 }, {
