@@ -747,7 +747,6 @@ require("lazy").setup({
           }
 
           vim.keymap.set("n", "<leader>sn", "<cmd>Telescope notify<CR>", { desc = "[S]earch [N]otifications" })
-          vim.api.nvim_set_hl(0, "Notify")
         end,
       },
     },
