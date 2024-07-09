@@ -221,11 +221,6 @@ require("lazy").setup({
           prompt_title = "Live Grep in Open Files",
         }
       end, { desc = "[S]earch [/] in Open Files" })
-
-      -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set("n", "<leader>sn", function()
-        builtin.find_files { cwd = vim.fn.stdpath "config" }
-      end, { desc = "[S]earch [N]eovim files" })
     end,
   },
 
@@ -740,7 +735,21 @@ require("lazy").setup({
     end,
     dependencies = {
       "muniftanjim/nui.nvim",
-      { "rcarriga/nvim-notify" },
+      {
+        "rcarriga/nvim-notify",
+        config = function()
+          ---@diagnostic disable-next-line: missing-fields
+          require("notify").setup {
+            fps = 120,
+            transparent_background = true,
+            background_color = "#000000",
+            stages = "slide",
+          }
+
+          vim.keymap.set("n", "<leader>sn", "<cmd>Telescope notify<CR>", { desc = "[S]earch [N]otifications" })
+          vim.api.nvim_set_hl(0, "Notify")
+        end,
+      },
     },
   },
 }, {
