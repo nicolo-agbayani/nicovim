@@ -150,12 +150,7 @@ require("lazy").setup({
         ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
         ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
         ["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-        ["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
       }
-      -- Visual mode
-      require("which-key").register({
-        ["<leader>h"] = { "Git [H]unk" },
-      }, { mode = "v" })
     end,
   },
 
@@ -578,8 +573,8 @@ require("lazy").setup({
     config = function()
       require("bufferline").setup()
 
-      vim.keymap.set("n", "<leader>h", "<cmd>bp<CR>")
-      vim.keymap.set("n", "<leader>l", "<cmd>bn<CR>")
+      vim.keymap.set("n", "<leader>h", "<cmd>bp<CR>", { desc = "Go to previous buffer" })
+      vim.keymap.set("n", "<leader>l", "<cmd>bn<CR>", { desc = "Go to next buffer" })
     end,
   },
 
