@@ -546,7 +546,24 @@ require("lazy").setup({
   {
     "nvim-lualine/lualine.nvim",
     config = function()
-      require("lualine").setup {}
+      require("lualine").setup {
+        options = {
+          component_separators = { left = "/", right = "/" },
+          section_separators = { left = "\u{e0bc}", right = "\u{e0ba}" },
+        },
+        sections = {
+          lualine_a = { { "mode", separator = { left = "\u{e0b2}", right = "\u{e0bc}" } } },
+          lualine_b = {
+            { "branch", icon = "\u{e725}" },
+            "diff",
+            "diagnostics",
+          },
+          lualine_c = { "filename" },
+          lualine_x = { "encoding", "fileformat", "filetype" },
+          lualine_y = { "progress" },
+          lualine_z = { { "location", separator = { left = "\u{e0ba}", right = "\u{e0b0}" } } },
+        },
+      }
     end,
     dependencies = {
       {
