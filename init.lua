@@ -497,6 +497,13 @@ require("lazy").setup({
     end,
   },
 
+  -- Color scheme editor
+  {
+    "rktjmp/lush.nvim",
+  },
+
+  { dir = "./themes/coffee" },
+
   -- Configure color scheme
   {
     "catppuccin/nvim",
