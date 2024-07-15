@@ -550,7 +550,6 @@ require("lazy").setup({
                   name = "vi_mode",
                   opts = {
                     show_mode_name = true,
-                    padding = "right",
                   },
                 },
                 hl = function()
@@ -562,6 +561,17 @@ require("lazy").setup({
                   }
                 end,
                 left_sep = "left_filled",
+              },
+              {
+                provider = " ",
+                hl = function()
+                  return {
+                    fg = "darkest",
+                    bg = mode_color(),
+                    style = "bold",
+                    name = "NeovimModeHLColor",
+                  }
+                end,
                 right_sep = "slant_right_2",
               },
             },
@@ -571,7 +581,7 @@ require("lazy").setup({
                 provider = {
                   name = "position",
                   opts = {
-                    format = "  {line}:{col} ",
+                    format = " {line}:{col} ",
                   },
                 },
                 hl = function()
@@ -592,8 +602,7 @@ require("lazy").setup({
           {},
         },
         theme = {
-
-          bg = get_color "StatusLineDark",
+          bg = "none",
           normal = get_color "StatusLineNormal",
           operator = get_color "StatusLineOperator",
           insert = get_color "StatusLineInsert",
