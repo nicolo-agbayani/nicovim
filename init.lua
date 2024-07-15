@@ -104,7 +104,7 @@ vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
 })
 
 -- Install `lazy.nvim` plugin manager
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
   vim.fn.system { "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath }
@@ -491,25 +491,11 @@ require("lazy").setup({
 
   -- Custom color scheme
   {
-    dir = vim.fn.stdpath("config") .. "/themes/coffee",
-    priority = 1000,
+    dir = vim.fn.stdpath "config" .. "/themes/coffee",
+    priority = 1001,
     init = function()
       vim.cmd.colorscheme "coffee"
-    end
-  },
-
-  -- Catppuccin color scheme
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000, -- NOTE: Make sure to load this before all the other start plugins.
-    -- init = function()
-    --   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    --   vim.cmd.hi "Comment gui=none"
-    -- end,
-    opts = {
-      transparent_background = true,
-    },
+    end,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -544,24 +530,93 @@ require("lazy").setup({
 
   -- Custom statusline
   {
-    "nvim-lualine/lualine.nvim",
+    "famiu/feline.nvim",
+    priority = 1000,
     config = function()
-      require("lualine").setup {
-        options = {
-          component_separators = { left = "/", right = "/" },
-          section_separators = { left = "\u{e0bc}", right = "\u{e0ba}" },
-        },
-        sections = {
-          lualine_a = { { "mode", separator = { left = "\u{e0b2}", right = "\u{e0bc}" } } },
-          lualine_b = {
-            { "branch", icon = "\u{e725}" },
-            "diff",
-            "diagnostics",
+      local function get_color(name)
+        return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(name)), "bg#")
+      end
+
+      local function mode_color()
+        return require("feline.providers.vi_mode").get_mode_color()
+      end
+
+      require("feline").setup {
+        components = {
+          active = {
+            {
+              {
+                provider = {
+                  name = "vi_mode",
+                  opts = {
+                    show_mode_name = true,
+                    padding = "right",
+                  },
+                },
+                hl = function()
+                  return {
+                    fg = "darkest",
+                    bg = mode_color(),
+                    style = "bold",
+                    name = "NeovimModeHLColor",
+                  }
+                end,
+                left_sep = "left_filled",
+                right_sep = "slant_right_2",
+              },
+            },
+            {},
+            {
+              {
+                provider = {
+                  name = "position",
+                  opts = {
+                    format = "  {line}:{col} ",
+                  },
+                },
+                hl = function()
+                  return {
+                    fg = "darkest",
+                    bg = mode_color(),
+                    style = "bold",
+                    name = "NeovimModeHLColor",
+                  }
+                end,
+                left_sep = "slant_left",
+                right_sep = "right_filled",
+              },
+            },
           },
-          lualine_c = { "filename" },
-          lualine_x = { "encoding", "fileformat", "filetype" },
-          lualine_y = { "progress" },
-          lualine_z = { { "location", separator = { left = "\u{e0ba}", right = "\u{e0b0}" } } },
+          {},
+          {},
+          {},
+        },
+        theme = {
+
+          bg = get_color "StatusLineDark",
+          normal = get_color "StatusLineNormal",
+          operator = get_color "StatusLineOperator",
+          insert = get_color "StatusLineInsert",
+          replace = get_color "StatusLineReplace",
+          visual = get_color "StatusLineVisual",
+          block = get_color "StatusLineBlock",
+          command = get_color "StatusLineCommand",
+          terminal = get_color "StatusLineTerminal",
+          darkest = get_color "StatusLineDarkest",
+          dark = get_color "StatusLineDark",
+        },
+        vi_mode_colors = {
+          NORMAL = "normal",
+          OP = "operator",
+          INSERT = "insert",
+          VISUAL = "visual",
+          LINES = "block",
+          BLOCK = "block",
+          REPLACE = "replace",
+          ["V-REPLACE"] = "replace",
+          COMMAND = "command",
+          TERM = "terminal",
+          SHELL = "terminal",
         },
       }
     end,
