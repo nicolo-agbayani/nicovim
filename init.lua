@@ -490,18 +490,23 @@ require("lazy").setup({
   },
 
   -- Custom color scheme
-  { dir = "./themes/coffee" },
+  {
+    dir = "./themes/coffee",
+    priority = 1000,
+    init = function()
+      vim.cmd.colorscheme "coffee"
+    end
+  },
 
-  -- Configure color scheme
+  -- Catppuccin color scheme
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000, -- NOTE: Make sure to load this before all the other start plugins.
-    init = function()
-      vim.cmd.colorscheme "catppuccin-mocha"
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-      vim.cmd.hi "Comment gui=none"
-    end,
+    -- init = function()
+    --   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    --   vim.cmd.hi "Comment gui=none"
+    -- end,
     opts = {
       transparent_background = true,
     },
@@ -630,7 +635,7 @@ require("lazy").setup({
 
       vim.keymap.set("n", "[c", function()
         require("treesitter-context").go_to_context(vim.v.count1)
-      end, { silent = true })
+      end, { desc = "Go to [C]ontext", silent = true })
     end,
   },
 
