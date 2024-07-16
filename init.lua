@@ -533,7 +533,11 @@ require("lazy").setup({
     "famiu/feline.nvim",
     priority = 1000,
     config = function()
-      local function get_color(name)
+      local function get_fg(name)
+        return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(name)), "fg#")
+      end
+
+      local function get_bg(name)
         return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(name)), "bg#")
       end
 
@@ -572,11 +576,194 @@ require("lazy").setup({
                     name = "NeovimModeHLColor",
                   }
                 end,
-                right_sep = "slant_right_2",
+                right_sep = {
+                  str = "slant_right_2",
+                  hl = function()
+                    return {
+                      fg = mode_color(),
+                      bg = "darkest",
+                    }
+                  end,
+                },
+              },
+              {
+                provider = "git_branch",
+                icon = " \u{e725} ",
+                hl = "StatusLineDarkest",
+              },
+              {
+                provider = "git_diff_added",
+                icon = " +",
+                hl = {
+                  fg = "add",
+                  bg = "darkest",
+                },
+              },
+              {
+                provider = "git_diff_changed",
+                icon = " ~",
+                hl = {
+                  fg = "change",
+                  bg = "darkest",
+                },
+              },
+              {
+                provider = "git_diff_removed",
+                icon = " -",
+                hl = {
+                  fg = "delete",
+                  bg = "darkest",
+                },
+              },
+              {
+                provider = " ",
+                hl = "StatusLineDarkest",
+              },
+              {
+                provider = "\u{e0bc}",
+                hl = {
+                  fg = "darkest",
+                  bg = "dark",
+                },
+              },
+              {
+                provider = "file_info",
+                hl = "StatusLineDark",
+                left_sep = {
+                  str = " ",
+                  hl = {
+                    fg = "none",
+                    bg = "dark",
+                  },
+                },
+                right_sep = {
+                  str = " ",
+                  hl = {
+                    fg = "none",
+                    bg = "dark",
+                  },
+                },
+              },
+              {
+                provider = "diagnostic_errors",
+                icon = "\u{f530}",
+                hl = {
+                  fg = "error",
+                  bg = "dark",
+                },
+                right_sep = {
+                  str = " ",
+                  hl = {
+                    fg = "none",
+                    bg = "dark",
+                  },
+                },
+              },
+              {
+                provider = "diagnostic_warnings",
+                icon = "\u{f40c}",
+                hl = {
+                  fg = "warn",
+                  bg = "dark",
+                },
+                right_sep = {
+                  str = " ",
+                  hl = {
+                    fg = "none",
+                    bg = "dark",
+                  },
+                },
+              },
+              {
+                provider = "diagnostic_hints",
+                icon = "\u{f400}",
+                hl = {
+                  fg = "hint",
+                  bg = "dark",
+                },
+                right_sep = {
+                  str = " ",
+                  hl = {
+                    fg = "none",
+                    bg = "dark",
+                  },
+                },
+              },
+              {
+                provider = "diagnostic_info",
+                icon = "\u{f05a}",
+                hl = {
+                  fg = "info",
+                  bg = "dark",
+                },
+                right_sep = {
+                  str = " ",
+                  hl = {
+                    fg = "none",
+                    bg = "dark",
+                  },
+                },
+              },
+              {
+                provider = "\u{e0b0}",
+                hl = {
+                  fg = "dark",
+                  bg = "none",
+                },
               },
             },
             {},
             {
+              {
+                provider = "\u{e0b2}",
+                hl = {
+                  fg = "dark",
+                  bg = "none",
+                },
+              },
+              {
+                provider = "file_encoding",
+                hl = "StatusLineDark",
+                left_sep = {
+                  str = " ",
+                  hl = "StatusLineDark",
+                },
+                right_sep = {
+                  str = " ",
+                  hl = "StatusLineDark",
+                },
+              },
+              {
+                provider = "file_format",
+                hl = "StatusLineDark",
+                left_sep = {
+                  str = "/ ",
+                  hl = "StatusLineDark",
+                },
+                right_sep = {
+                  str = " ",
+                  hl = "StatusLineDark",
+                },
+              },
+              {
+                provider = " ",
+                hl = "StatusLineDarkest",
+                left_sep = {
+                  str = "slant_left",
+                  hl = {
+                    fg = "darkest",
+                    bg = "dark",
+                  },
+                },
+              },
+              {
+                provider = "line_percentage",
+                hl = "StatusLineDarkest",
+              },
+              {
+                provider = " ",
+                hl = "StatusLineDarkest",
+              },
               {
                 provider = {
                   name = "position",
@@ -592,27 +779,45 @@ require("lazy").setup({
                     name = "NeovimModeHLColor",
                   }
                 end,
-                left_sep = "slant_left",
+                left_sep = {
+                  str = "slant_left",
+                  hl = function()
+                    return {
+                      fg = mode_color(),
+                      bg = "darkest",
+                    }
+                  end,
+                },
                 right_sep = "right_filled",
               },
             },
           },
-          {},
-          {},
-          {},
+          inactive = {
+            {},
+            {},
+            {},
+          },
         },
         theme = {
           bg = "none",
-          normal = get_color "StatusLineNormal",
-          operator = get_color "StatusLineOperator",
-          insert = get_color "StatusLineInsert",
-          replace = get_color "StatusLineReplace",
-          visual = get_color "StatusLineVisual",
-          block = get_color "StatusLineBlock",
-          command = get_color "StatusLineCommand",
-          terminal = get_color "StatusLineTerminal",
-          darkest = get_color "StatusLineDarkest",
-          dark = get_color "StatusLineDark",
+          text = get_bg "StatusLineText",
+          darkest = get_bg "StatusLineDarkest",
+          dark = get_bg "StatusLineDark",
+          normal = get_bg "StatusLineNormal",
+          operator = get_bg "StatusLineOperator",
+          insert = get_bg "StatusLineInsert",
+          replace = get_bg "StatusLineReplace",
+          visual = get_bg "StatusLineVisual",
+          block = get_bg "StatusLineBlock",
+          command = get_bg "StatusLineCommand",
+          terminal = get_bg "StatusLineTerminal",
+          add = get_fg "GitSignsAdd",
+          change = get_fg "GitSignsChange",
+          delete = get_fg "GitSignsDelete",
+          error = get_fg "DiagnosticError",
+          warn = get_fg "DiagnosticWarn",
+          hint = get_fg "DiagnosticHint",
+          info = get_fg "DiagnosticInfo",
         },
         vi_mode_colors = {
           NORMAL = "normal",

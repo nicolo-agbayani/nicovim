@@ -323,6 +323,9 @@ local theme = lush(function(injected_functions)
     GitSignsDelete { fg = accent_stain(0) },
 
     -- Statusline colors
+    StatusLineText = { bg = text },
+    StatusLineDarkest { bg = darkest },
+    StatusLineDark { bg = dark },
     StatusLineNormal { fg = darkest, bg = text_stain(120) },
     StatusLineOperator { fg = darkest, bg = text_stain(90) },
     StatusLineInsert { fg = darkest, bg = text_stain(30) },
@@ -331,8 +334,6 @@ local theme = lush(function(injected_functions)
     StatusLineBlock { fg = darkest, bg = text_stain(300) },
     StatusLineCommand { fg = darkest, bg = text_stain(210) },
     StatusLineTerminal { fg = darkest, bg = text_stain(150) },
-    StatusLineDarkest { bg = darkest },
-    StatusLineDark { bg = dark },
   }
 end)
 
