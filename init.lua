@@ -793,9 +793,21 @@ require("lazy").setup({
             },
           },
           inactive = {
+            {
+              {
+                provider = "file_info",
+                hl = "Comment",
+                left_sep = " ",
+              }
+            },
             {},
-            {},
-            {},
+            {
+              {
+                provider = "position",
+                hl = "Comment",
+                right_sep = " ",
+              }
+            },
           },
         },
         theme = {
