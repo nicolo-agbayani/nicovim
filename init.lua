@@ -363,6 +363,18 @@ require("lazy").setup({
           end,
         },
       }
+
+      local signs = {
+        Error = "\u{f530}",
+        Warn = "\u{f40c}",
+        Hint = "\u{f400}",
+        Info = "\u{f05a}"
+      }
+
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl })
+      end
     end,
   },
 
