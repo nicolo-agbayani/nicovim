@@ -180,12 +180,9 @@ require("lazy").setup({
     },
     config = function()
       require("telescope").setup {
-        -- defaults = {
-        --   mappings = {
-        --     i = { ["<c-enter>"] = "to_fuzzy_refine" },
-        --   },
-        -- },
-        -- pickers = {}
+        defaults = {
+          initial_mode = "normal",
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
@@ -368,7 +365,7 @@ require("lazy").setup({
         Error = "\u{f530}",
         Warn = "\u{f40c}",
         Hint = "\u{f400}",
-        Info = "\u{f05a}"
+        Info = "\u{f05a}",
       }
 
       for type, icon in pairs(signs) do
@@ -749,7 +746,7 @@ require("lazy").setup({
                 provider = "file_format",
                 hl = "StatusLineDark",
                 left_sep = {
-                  str = "/ ",
+                  str = "\u{e0bd} ",
                   hl = "StatusLineDark",
                 },
                 right_sep = {
@@ -810,7 +807,7 @@ require("lazy").setup({
                 provider = "file_info",
                 hl = "Comment",
                 left_sep = " ",
-              }
+              },
             },
             {},
             {
@@ -818,7 +815,7 @@ require("lazy").setup({
                 provider = "position",
                 hl = "Comment",
                 right_sep = " ",
-              }
+              },
             },
           },
         },
