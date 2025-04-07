@@ -103,6 +103,14 @@ vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
   command = "set guicursor=a:ver1",
 })
 
+-- Neovide animations
+if vim.g.neovide then
+  vim.g.neovide_window_blurred = true
+  vim.g.neovide_opacity = 0.4
+  vim.g.neovide_normal_opacity = 0.3
+  vim.g.neovide_cursor_vfx_mode = "railgun"
+end
+
 -- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
