@@ -106,9 +106,13 @@ vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend" }, {
 -- Neovide animations
 if vim.g.neovide then
   vim.g.neovide_window_blurred = true
-  vim.g.neovide_opacity = 0.4
-  vim.g.neovide_normal_opacity = 0.3
+  vim.g.neovide_opacity = 1
+  vim.g.neovide_normal_opacity = 0.5
   vim.g.neovide_cursor_vfx_mode = "railgun"
+  vim.g.neovide_title_background_color = string.format(
+      "%x",
+      vim.api.nvim_get_hl(0, {id=vim.api.nvim_get_hl_id_by_name("Normal")}).bg
+  )
 end
 
 -- Install `lazy.nvim` plugin manager
