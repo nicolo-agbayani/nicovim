@@ -56,10 +56,26 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- Change navigation soft wrap behavior
+vim.keymap.set({ "n", "v", }, "j", function()
+  if vim.v.count == 0 then
+    return "gj"
+  else
+    return "j"
+  end
+end, { expr = true, remap = true, })
+vim.keymap.set({ "n", "v", }, "k", function()
+  if vim.v.count == 0 then
+    return "gk"
+  else
+    return "k"
+  end
+end, { expr = true, remap = true, })
+
 -- Add navigation keybinds
 vim.keymap.set({ "n", "v", }, "<C-h>", "4b")
-vim.keymap.set({ "n", "v", }, "<C-j>", "4j")
-vim.keymap.set({ "n", "v", }, "<C-k>", "4k")
+vim.keymap.set({ "n", "v", }, "<C-j>", "4gj")
+vim.keymap.set({ "n", "v", }, "<C-k>", "4gk")
 vim.keymap.set({ "n", "v", }, "<C-l>", "4w")
 
 vim.keymap.set("n", "U", "<C-r>")  -- Add redo keybind
