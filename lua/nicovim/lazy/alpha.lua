@@ -11,9 +11,9 @@ return {
       [[⢿⣿⠀⠀⠀⠀⠀⠙⢿⣷⠀⠀⠀⠀⠀⠙⢿⣷⠀⠙⢿⣿⣿⣿⣿⣷⠀⠙⢿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⠀⠀⠀⠀⠀⠀⠀⢿⣿⠀⠀⢿⣿⠀⠀⢿⣿]],
     }
     if vim.g.neovide then
-      table.insert(header, [[                                             nicovide 0.2.1]])
+      table.insert(header, [[                                             nicovide 0.3.0]])
     else
-      table.insert(header, [[                                              nicovim 0.2.1]])
+      table.insert(header, [[                                              nicovim 0.3.0]])
     end
     dashboard.section.header.val = header
     alpha.setup(dashboard.config)
