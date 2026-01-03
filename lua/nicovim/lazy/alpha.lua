@@ -3,14 +3,19 @@ return {
   config = function ()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
-    dashboard.section.header.val = {
+    header = {
       [[⢿⣷⣄⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣷⣄⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⢿⣿⣿⣿⡆⠀⠀⠀⢿⣷⣄⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀]],
       [[⣄⠙⢿⣷⣄⠀⢾⣿⣏⠀⢠⣶⣄⠙⢿⣷⣄⠙⠋⠀⠀⠀⢠⣶⣄⠀⠀⠀⠀⠙⢿⣷⣄⠙⢿⣷⣄⠀⠀⠀⣄⠙⢿⣷⣄⠀⢠⣶⣄⠀⢠⣶⣄⠙⢿⣷⣄⠀⠀]],
       [[⣿⣷⠀⠙⢿⣷⣄⠙⢿⣷⠀⠙⢿⣷⣄⠙⢿⣷⣄⠀⠀⠀⠀⠙⢿⣷⣄⠀⠀⠀⠀⠙⢿⣷⡄⠙⢿⣷⣄⠀⣿⣷⠀⠙⢿⣷⣄⠙⢿⣷⣄⠙⢿⣷⣄⠙⢿⣷⣄]],
       [[⣿⣿⠀⠀⠀⠙⢿⣷⣄⠀⠀⠀⠀⠙⢿⣷⣄⠙⢿⣷⣄⠀⠀⠀⠀⠙⢿⣷⣄⠀⣠⣶⡄⠉⠀⠀⠀⠙⢿⣷⣿⣿⠀⠀⠀⠙⠿⠃⠀⣿⣿⠀⠀⣿⣿⠀⠀⣿⣿]],
       [[⢿⣿⠀⠀⠀⠀⠀⠙⢿⣷⠀⠀⠀⠀⠀⠙⢿⣷⠀⠙⢿⣿⣿⣿⣿⣷⠀⠙⢿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⠀⠀⠀⠀⠀⠀⠀⢿⣿⠀⠀⢿⣿⠀⠀⢿⣿]],
-      [[                                              nicovim 0.1.0]]
     }
+    if vim.fn.exists("g:neovide") == 1 then
+      table.insert(header, [[                                             nicovide 0.2.0]])
+    else
+      table.insert(header, [[                                              nicovim 0.2.0]])
+    end
+    dashboard.section.header.val = header
     alpha.setup(dashboard.config)
   end
 }
