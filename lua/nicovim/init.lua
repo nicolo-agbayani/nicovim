@@ -96,6 +96,8 @@ if vim.g.neovide then
   vim.g.neovide_cursor_vfx_particle_lifetime = 0.75
   vim.g.neovide_cursor_vfx_particle_speed = 10
   vim.g.neovide_cursor_vfx_particle_phase = 4
+
+  vim.o.guifont = "FiraCode Nerd Font Mono"
 end
 
 require("nicovim.lazy_init")
