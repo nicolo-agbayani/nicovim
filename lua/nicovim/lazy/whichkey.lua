@@ -5,7 +5,7 @@ return {
     require("which-key").setup()
 
     require("which-key").add {
-      { "<leader>c", group = "[C]ode" },
+      { "<leader>s", group = "Search" },
     }
   end,
 }

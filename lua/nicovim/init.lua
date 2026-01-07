@@ -63,14 +63,14 @@ vim.keymap.set({ "n", "v", }, "j", function()
   else
     return "j"
   end
-end, { expr = true, remap = true, })
+end, { expr = true, noremap = true, })
 vim.keymap.set({ "n", "v", }, "k", function()
   if vim.v.count == 0 then
     return "gk"
   else
     return "k"
   end
-end, { expr = true, remap = true, })
+end, { expr = true, noremap = true, })
 
 -- Add navigation keybinds
 vim.keymap.set({ "n", "v", }, "<C-h>", "4b")
