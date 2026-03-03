@@ -5,7 +5,6 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true  -- Use Nerd Font
 vim.opt.number = true  -- Make line numbers default
 vim.opt.mouse = "a"  -- Enable mouse mode
-vim.opt.clipboard = "unnamedplus"  -- Sync clipboard with OS
 vim.opt.breakindent = true  -- Enable break indent
 vim.opt.undofile = true  -- Save undo history
 
@@ -46,7 +45,7 @@ vim.api.nvim_create_autocmd({ "VimLeave", "VimSuspend", }, {
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
