@@ -26,5 +26,5 @@ return {
     table.insert(header, string.format("%62s", version))
     dashboard.section.header.val = header
     alpha.setup(dashboard.config)
-  end
+  end,
 }
