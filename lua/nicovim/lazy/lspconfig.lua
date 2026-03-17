@@ -13,21 +13,21 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
       callback = function(event)
-        vim.keymap.set("n", "gdd", require("telescope.builtin").lsp_definitions, { buffer = event.buf, desc = "Go to definition"})
-        vim.keymap.set("n", "gdr", require("telescope.builtin").lsp_references, { buffer = event.buf, desc = "Go to references"})
-        vim.keymap.set("n", "gdi", require("telescope.builtin").lsp_implementations, { buffer = event.buf, desc = "Go to implementation"})
-        vim.keymap.set("n", "gdt", require("telescope.builtin").lsp_type_definitions, { buffer = event.buf, desc = "Go to type implementation"})
+        vim.keymap.set("n", "gdd", require("telescope.builtin").lsp_definitions, { buffer = event.buf, desc = "Definition"})
+        vim.keymap.set("n", "gdr", require("telescope.builtin").lsp_references, { buffer = event.buf, desc = "References"})
+        vim.keymap.set("n", "gdi", require("telescope.builtin").lsp_implementations, { buffer = event.buf, desc = "Implementation"})
+        vim.keymap.set("n", "gdt", require("telescope.builtin").lsp_type_definitions, { buffer = event.buf, desc = "Type implementation"})
 
         vim.keymap.set("n", "<leader>cs", require("telescope.builtin").lsp_document_symbols, { buffer = event.buf, desc = "Document symbols"})
         vim.keymap.set("n", "<leader>cS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { buffer = event.buf, desc = "Workspace symbols"})
 
         vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = event.buf, desc = "Rename"})
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "Code Action"})
-        vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { buffer = event.buf, desc = "View Diagnostic"})
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "Code action"})
+        vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { buffer = event.buf, desc = "View diagnostic"})
 
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = event.buf, desc = "Hover Documentation"})
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = event.buf, desc = "Hover documentation"})
 
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = event.buf, desc = "Go to Declaration"})
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = event.buf, desc = "Declaration"})
 
         -- Add automatic highlight on hover
         local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -57,7 +57,7 @@ return {
         if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
           vim.keymap.set("n", "<leader>ch", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, { buffer = event.buf, desc = "Toggle Inlay Hints"})
+          end, { buffer = event.buf, desc = "Toggle inlay hints"})
         end
       end,
     })

@@ -72,10 +72,10 @@ vim.keymap.set({ "n", "v", }, "k", function()
 end, { expr = true, noremap = true, })
 
 -- Add navigation keybinds
-vim.keymap.set({ "n", "v", }, "<C-h>", "4b")
+vim.keymap.set({ "n", "v", }, "<C-h>", "4h")
 vim.keymap.set({ "n", "v", }, "<C-j>", "4gj")
 vim.keymap.set({ "n", "v", }, "<C-k>", "4gk")
-vim.keymap.set({ "n", "v", }, "<C-l>", "4w")
+vim.keymap.set({ "n", "v", }, "<C-l>", "4l")
 
 vim.keymap.set("n", "U", "<C-r>")  -- Add redo keybind
 
