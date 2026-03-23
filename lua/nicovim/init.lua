@@ -85,7 +85,7 @@ if vim.g.neovide then
   vim.g.neovide_window_blurred = true
   vim.g.neovide_opacity = 0.5
   vim.g.neovide_normal_opacity = 0.5
-  vim.g.neovide_floating_corner_radius = 0.25
+  vim.g.neovide_floating_corner_radius = 0.28
   vim.g.neovide_floating_blur_amount_x = 4
   vim.g.neovide_floating_blur_amount_y = 4
   vim.g.neovide_position_animation_length = 0.25
