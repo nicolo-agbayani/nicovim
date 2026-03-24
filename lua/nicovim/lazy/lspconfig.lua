@@ -99,10 +99,10 @@ return {
     vim.diagnostic.config({
       signs = {
         text = {
-          [vim.diagnostic.severity.INFO] = "\u{f29f}",
-          [vim.diagnostic.severity.HINT] = "\u{f29f}",
-          [vim.diagnostic.severity.WARN] = "\u{f29f}",
-          [vim.diagnostic.severity.ERROR] = "\u{f29f}",
+          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.HINT] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.ERROR] = "",
         },
         numhl = {
           [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
