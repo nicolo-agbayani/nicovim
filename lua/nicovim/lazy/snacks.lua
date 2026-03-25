@@ -20,7 +20,7 @@ return {
 
       version_string = string.format("%64s", version)
       Snacks.dashboard.update()
-    end, 500)
+    end, 750)
   end,
   opts = {
     dashboard = {
