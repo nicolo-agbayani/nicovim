@@ -45,16 +45,16 @@ return {
     pcall(require("telescope").load_extension, "ui-select")
   end,
   keys = {
-    { "<leader>sh", require("telescope.builtin").help_tags, desc = "Help" },
-    { "<leader>sk", require("telescope.builtin").keymaps, desc = "Keymap" },
-    { "<leader>sf", require("telescope.builtin").find_files, desc = "Files" },
-    { "<leader>ss", require("telescope.builtin").builtin, desc = "Built-in telescopes" },
-    { "<leader>sw", require("telescope.builtin").grep_string, desc = "Current word" },
-    { "<leader>sg", require("telescope.builtin").live_grep, desc = "Grep" },
-    { "<leader>sd", require("telescope.builtin").diagnostics, desc = "Diagnostics" },
-    { "<leader>sr", require("telescope.builtin").resume, desc = "Resume previous search" },
-    { "<leader>s.", require("telescope.builtin").resume, desc = "Recent files" },
-    { "<leader><leader>", require("telescope.builtin").buffers, desc = "Existing buffers" },
+    { "<leader>sh", function() require("telescope.builtin").help_tags() end, desc = "Help" },
+    { "<leader>sk", function() require("telescope.builtin").keymaps() end, desc = "Keymap" },
+    { "<leader>sf", function() require("telescope.builtin").find_files() end, desc = "Files" },
+    { "<leader>ss", function() require("telescope.builtin").builtin() end, desc = "Built-in telescopes" },
+    { "<leader>sw", function() require("telescope.builtin").grep_string() end, desc = "Current word" },
+    { "<leader>sg", function() require("telescope.builtin").live_grep() end, desc = "Grep" },
+    { "<leader>sd", function() require("telescope.builtin").diagnostics() end, desc = "Diagnostics" },
+    { "<leader>sr", function() require("telescope.builtin").resume() end, desc = "Resume previous search" },
+    { "<leader>s.", function() require("telescope.builtin").resume() end, desc = "Recent files" },
+    { "<leader><leader>", function() require("telescope.builtin").buffers() end, desc = "Existing buffers" },
     { "<leader>/", function()
       require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
         winblend = 10,
